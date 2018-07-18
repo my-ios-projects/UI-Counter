@@ -44,18 +44,48 @@ class ViewController: UIViewController {
         
         
         
-        // B) Creating a UIButton
-        let button = UIButton()
-        button.frame = CGRect(x: 150, y: 250,
+        // B) Creating a UIButton for addition
+        let addButton = UIButton()
+        addButton.frame = CGRect(x: 150, y: 250,
                               width: 60, height: 60)
-        button.setTitle("Click", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        view.addSubview(button)
+        addButton.setTitle("Add 1", for: .normal)
+        addButton.setTitleColor(UIColor.green, for: .normal)
+        view.addSubview(addButton)
         
         // @action
-        // Adding target/action to the button
-        button.addTarget(self, action: #selector(ViewController.increaseCount),
-                         for: UIControlEvents.touchUpInside)
+        // Adding target/action to the addButton
+        addButton.addTarget(self,
+                            action: #selector(ViewController.increaseCount),
+                            for: UIControlEvents.touchUpInside)
+        
+        
+        
+        // C) Creating a UIButton for subtracting
+        let subtractButton = UIButton()
+        subtractButton.frame = CGRect(x: 150, y: 300,
+                                      width: 90, height: 60)
+        subtractButton.setTitle("Subtract 1", for: .normal)
+        subtractButton.setTitleColor(UIColor.red, for: .normal)
+        view.addSubview(subtractButton)
+        
+        // @action
+        subtractButton.addTarget(self,
+                                 action: #selector(ViewController.decreaseCount),
+                                 for: UIControlEvents.touchUpInside)
+        
+        
+        // D) Creating a UIButton for clearing screen
+        let clearButton = UIButton()
+        clearButton.frame = CGRect(x: 150, y: 400,
+                                   width: 60, height: 60)
+        clearButton.setTitle("Clear", for: .normal)
+        clearButton.setTitleColor(UIColor.blue, for: .normal)
+        view.addSubview(clearButton)
+        
+        // @action
+        clearButton.addTarget(self,
+                              action: #selector(ViewController.clear),
+                              for: UIControlEvents.touchUpInside)
     
     } // end viewDidLoad()
 
@@ -64,7 +94,20 @@ class ViewController: UIViewController {
         self.count += 1
         // so self.label property is called outlet.
         self.label.text = "\(self.count)"
+        view.backgroundColor = UIColor.brown
     } // end increaseCount()
+    
+    @objc func decreaseCount(){
+        self.count -= 1
+        self.label.text = "\(self.count)"
+        view.backgroundColor = UIColor.lightGray
+    }
+    
+    @objc func clear() {
+        view.backgroundColor = UIColor.white
+        self.label.text = "0"
+        self.count = 0
+    }
 
 
 } // end viewController
